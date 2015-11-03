@@ -16,7 +16,30 @@ Room::Room(std::string _text):text(_text){
 
 void Room::display(){
     std::cout << text << std::endl;
-    std::cout << "1. go back " << std::endl;
-    std::cout << "2. stay here " << std::endl;
-    std::cout << "3. go onwards " << std::endl;
+    for(int i = 0; i < doors.size(); i++){
+        std::cout << i << ". ";
+        doors[i].display();
+    }
+}
+
+void Room::addDoor(std::string text, int nextRoom){
+    doors.push_back(Door(text, nextRoom));
+}
+
+int Room::makeChoice()
+{
+    int i = -1;
+    
+    if(!(std::cin >> i)){
+        std::cout << "could not understand" << std::endl;
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        return -1;
+    }
+    
+    if(i >= 0 && i < doors.size()){
+        return doors[i].getRoom();
+    } else {
+        return -1;
+    }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A90FC32A1BE8C6EA00D82DBC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90FC3291BE8C6EA00D82DBC /* main.cpp */; };
 		A90FC3321BE8E06D00D82DBC /* Room.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90FC3301BE8E06D00D82DBC /* Room.cpp */; };
+		A90FC3351BE8FF0600D82DBC /* Door.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A90FC3331BE8FF0600D82DBC /* Door.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		A90FC3291BE8C6EA00D82DBC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A90FC3301BE8E06D00D82DBC /* Room.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Room.cpp; sourceTree = "<group>"; };
 		A90FC3311BE8E06D00D82DBC /* Room.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Room.hpp; sourceTree = "<group>"; };
+		A90FC3331BE8FF0600D82DBC /* Door.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Door.cpp; sourceTree = "<group>"; };
+		A90FC3341BE8FF0600D82DBC /* Door.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Door.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,8 @@
 			children = (
 				A90FC3291BE8C6EA00D82DBC /* main.cpp */,
 				A90FC3301BE8E06D00D82DBC /* Room.cpp */,
+				A90FC3331BE8FF0600D82DBC /* Door.cpp */,
+				A90FC3341BE8FF0600D82DBC /* Door.hpp */,
 				A90FC3311BE8E06D00D82DBC /* Room.hpp */,
 			);
 			path = MyTextAdventure;
@@ -123,6 +128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A90FC3351BE8FF0600D82DBC /* Door.cpp in Sources */,
 				A90FC3321BE8E06D00D82DBC /* Room.cpp in Sources */,
 				A90FC32A1BE8C6EA00D82DBC /* main.cpp in Sources */,
 			);
