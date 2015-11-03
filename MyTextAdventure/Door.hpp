@@ -11,16 +11,17 @@
 
 #include <stdio.h>
 #include <string>
+class Room;
 
 class Door {
     std::string text;
-    int nextRoom;
+    Room *nextRoom;
     
 public:
-    Door(std::string _text, int _nextRoom);
+    Door(std::string _text, Room *_nextRoom);
     
     void display();
-    int getRoom();
+    Room * getRoom();
 };
 
 

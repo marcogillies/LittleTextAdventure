@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-Door::Door(std::string _text, int _nextRoom)
+Door::Door(std::string _text, Room *_nextRoom)
     :text(_text), nextRoom(_nextRoom)
 {
     
@@ -20,6 +20,6 @@ void Door::display(){
     std::cout << text << std::endl;
 };
 
-int Door::getRoom(){
+Room * Door::getRoom(){
     return nextRoom;
 };

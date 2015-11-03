@@ -17,31 +17,47 @@ using std::vector;
 int main(int argc, const char * argv[]) {
     // insert code here...
     
-    vector <Room> rooms;
-    rooms.push_back(Room("you are standing on the edge of a deep dark forest"));
-    rooms.push_back(Room("it is dark in here"));
-    rooms.push_back(Room("you see a clearing"));
-    rooms.push_back(Room("its even darker"));
+    vector <Room *> rooms;
+    rooms.push_back(new Room("you are standing on the edge of a deep dark forest"));
+    rooms.push_back(new Room("it is dark in here"));
+    rooms.push_back(new Room("you see a clearing"));
+    rooms.push_back(new Room("its even darker"));
     
-    rooms[0].addDoor("stay here", 0);
-    rooms[0].addDoor("path into the forest", 1);
-    rooms[1].addDoor("go back", 0);
-    rooms[1].addDoor("turn left", 2);
-    rooms[1].addDoor("turn right", 3);
-    rooms[2].addDoor("go back", 1);
-    rooms[3].addDoor("go back", 1);
+    rooms[0]->addDoor("stay here", rooms[0]);
+    rooms[0]->addDoor("path into the forest", rooms[1]);
+    rooms[1]->addDoor("go back", rooms[0]);
+    rooms[1]->addDoor("turn left", rooms[2]);
+    rooms[1]->addDoor("turn right", rooms[3]);
+    rooms[2]->addDoor("go back", rooms[1]);
+    rooms[3]->addDoor("go back", rooms[1]);
 
     
-    int currentRoom = 0;
+    Room *currentRoom = rooms[0];
     
     while (true){
-        rooms[currentRoom].display();
+        currentRoom->display();
         
-        int i = rooms[currentRoom].makeChoice();
+        currentRoom = currentRoom->makeChoice();
         
-        if(i >= 0 && i < rooms.size()){
-            currentRoom = i;
-        }
+        
+        // if you return nullptr
+        //Room *i = currentRoom->makeChoice();
+        
+        //if (i != nullptr){
+        //    currentRoom = i;
+        //} else {
+        //    std::cout << "error!";
+        //}
+        
+        //if(i >= 0 && i < rooms.size()){
+        //    currentRoom = i;
+        //}
     }
+    
+    for(int i = 0; i < rooms.size(); i++){
+        delete rooms[i];
+    }
+    rooms.clear();
+    
     return 0;
 }

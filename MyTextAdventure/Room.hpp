@@ -22,10 +22,10 @@ class Room
 public:
     Room(std::string _text);
     
-    void addDoor(std::string text, int nextRoom);
+    void addDoor(std::string text, Room * nextRoom);
     void display();
     
-    int makeChoice();
+    Room * makeChoice();
 };
 
 #endif /* Room_hpp */

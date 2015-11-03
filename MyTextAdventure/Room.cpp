@@ -22,11 +22,11 @@ void Room::display(){
     }
 }
 
-void Room::addDoor(std::string text, int nextRoom){
+void Room::addDoor(std::string text, Room * nextRoom){
     doors.push_back(Door(text, nextRoom));
 }
 
-int Room::makeChoice()
+Room * Room::makeChoice()
 {
     int i = -1;
     
@@ -34,12 +34,12 @@ int Room::makeChoice()
         std::cout << "could not understand" << std::endl;
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        return -1;
+        return this;
     }
     
     if(i >= 0 && i < doors.size()){
         return doors[i].getRoom();
     } else {
-        return -1;
+        return this;
     }
 }
