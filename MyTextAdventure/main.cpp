@@ -60,8 +60,15 @@ int main(int argc, const char * argv[]) {
         p.display();
         currentRoom->display();
         
-        std::string nextRoomName = currentRoom->makeChoice();
-        currentRoom = findRoom(nextRoomName);
+        std::string nextRoomName;
+        try{
+            nextRoomName = currentRoom->makeChoice();
+            currentRoom = findRoom(nextRoomName);
+        } catch(EndGameException){
+            break;
+        } catch (InputValueException &e){
+            std::cout << "Error :" << e.getMessage() << std::endl;
+        }
     }
     
     rooms.clear();

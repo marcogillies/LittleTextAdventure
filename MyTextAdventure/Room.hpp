@@ -21,6 +21,12 @@ public:
     std::string getMessage(){return message;}
 };
 
+class EndGameException{
+public:
+    EndGameException(){};
+};
+
+
 class Room
 {
     std::string name;

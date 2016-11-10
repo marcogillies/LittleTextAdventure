@@ -31,17 +31,28 @@ void Room::addDoor(std::string text, std::string nextRoom){
 std::string Room::makeChoice()
 {
     int i = -1;
+    std::string input;
     
-    if(!(std::cin >> i)){
-        std::cout << "could not understand" << std::endl;
+    if(!(std::cin >> input)){
+        std::cout << "input error" << std::endl;
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        return name;
+        throw InputValueException("Could not read player input");
+    }
+    
+    if(input == "quit"){
+        throw EndGameException();
+    }
+    
+    try{
+        i = stoi(input);
+    } catch (std::invalid_argument){
+        throw InputValueException("please enter a number");
     }
     
     if(i >= 0 && i < doors.size()){
         return doors[i].getRoom();
     } else {
-        return name;
+        throw InputValueException("did not recognise the option");
     }
 }
