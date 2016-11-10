@@ -15,13 +15,13 @@ class Room;
 
 class Door {
     std::string text;
-    int nextRoom;
+    std::string nextRoom;
     
 public:
-    Door(std::string _text, int _nextRoom);
+    Door(std::string _text, std::string _nextRoom);
     
     void display();
-    int getRoom();
+    std::string getRoom();
 };
 
 

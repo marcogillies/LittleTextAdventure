@@ -17,16 +17,19 @@
 
 class Room
 {
+    std::string name;
     std::string text;
     std::vector <Door> doors;
-    int id;
-public:
-    Room(std::string _text, int _id);
     
-    void addDoor(std::string text, int nextRoom);
+public:
+    Room(std::string name, std::string _text);
+    
+    void addDoor(std::string text, std::string nextRoom);
     void display();
     
-    int makeChoice();
+    std::string getName(){return name;};
+    
+    std::string makeChoice();
 };
 
 #endif /* Room_hpp */

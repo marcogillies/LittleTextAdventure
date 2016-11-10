@@ -9,49 +9,47 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 using std::string;
 using std::vector;
 
 #include "Room.hpp"
 
+vector <Room> rooms;
+
+vector <Room>::iterator findRoom(std::string name){
+    auto found = find_if(rooms.begin(), rooms.end(),
+                         [name] (Room room){
+                             return room.getName() == name;
+                         });
+    return found;
+}
+
 int main(int argc, const char * argv[]) {
     // insert code here...
     
-    vector <Room *> rooms;
-    rooms.push_back(new Room("you are standing on the edge of a deep dark forest", 0));
-    rooms.push_back(new Room("it is dark in here", 1));
-    rooms.push_back(new Room("you see a clearing", 2));
-    rooms.push_back(new Room("its even darker", 3));
     
-    rooms[0]->addDoor("stay here", 0);
-    rooms[0]->addDoor("path into the forest", 1);
-    rooms[1]->addDoor("go back", 0);
-    rooms[1]->addDoor("turn left", 2);
-    rooms[1]->addDoor("turn right", 3);
-    rooms[2]->addDoor("go back", 1);
-    rooms[3]->addDoor("go back", 1);
+    rooms.push_back(Room("start", "you are standing on the edge of a deep dark forest"));
+    rooms.push_back(Room("dark forest", "it is dark in here"));
+    rooms.push_back(Room("clearing", "you see a clearing"));
+    rooms.push_back(Room("very dark forest", "its even darker"));
+    
+    rooms[0].addDoor("stay here", "start");
+    rooms[0].addDoor("path into the forest", "dark forest");
+    rooms[1].addDoor("go back", "start");
+    rooms[1].addDoor("turn left", "clearing");
+    rooms[1].addDoor("turn right", "very dark forest");
+    rooms[2].addDoor("go back", "dark forest");
+    rooms[3].addDoor("go back", "dark forest");
 
     
-    int currentRoom = 0;
+    auto currentRoom = rooms.begin();
     
     while (true){
-        rooms[currentRoom]->display();
+        currentRoom->display();
         
-        currentRoom = rooms[currentRoom]->makeChoice();
-        
-        
-        // if you return nullptr
-        //Room *i = currentRoom->makeChoice();
-        
-        //if (i != nullptr){
-        //    currentRoom = i;
-        //} else {
-        //    std::cout << "error!";
-        //}
-        
-        //if(i >= 0 && i < rooms.size()){
-        //    currentRoom = i;
-        //}
+        std::string nextRoomName = currentRoom->makeChoice();
+        currentRoom = findRoom(nextRoomName);
     }
     
     rooms.clear();
