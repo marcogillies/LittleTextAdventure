@@ -10,7 +10,9 @@
 #include <iostream>
 
 
-Room::Room(std::string _text):text(_text){
+Room::Room(std::string _text, int _id)
+    :text(_text),
+     id(_id){
     
 }
 
@@ -22,11 +24,11 @@ void Room::display(){
     }
 }
 
-void Room::addDoor(std::string text, Room * nextRoom){
+void Room::addDoor(std::string text, int nextRoom){
     doors.push_back(Door(text, nextRoom));
 }
 
-Room * Room::makeChoice()
+int Room::makeChoice()
 {
     int i = -1;
     
@@ -34,12 +36,12 @@ Room * Room::makeChoice()
         std::cout << "could not understand" << std::endl;
         std::cin.clear();
         std::cin.ignore(10000, '\n');
-        return this;
+        return id;
     }
     
     if(i >= 0 && i < doors.size()){
         return doors[i].getRoom();
     } else {
-        return this;
+        return id;
     }
 }

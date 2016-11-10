@@ -18,26 +18,26 @@ int main(int argc, const char * argv[]) {
     // insert code here...
     
     vector <Room *> rooms;
-    rooms.push_back(new Room("you are standing on the edge of a deep dark forest"));
-    rooms.push_back(new Room("it is dark in here"));
-    rooms.push_back(new Room("you see a clearing"));
-    rooms.push_back(new Room("its even darker"));
+    rooms.push_back(new Room("you are standing on the edge of a deep dark forest", 0));
+    rooms.push_back(new Room("it is dark in here", 1));
+    rooms.push_back(new Room("you see a clearing", 2));
+    rooms.push_back(new Room("its even darker", 3));
     
-    rooms[0]->addDoor("stay here", rooms[0]);
-    rooms[0]->addDoor("path into the forest", rooms[1]);
-    rooms[1]->addDoor("go back", rooms[0]);
-    rooms[1]->addDoor("turn left", rooms[2]);
-    rooms[1]->addDoor("turn right", rooms[3]);
-    rooms[2]->addDoor("go back", rooms[1]);
-    rooms[3]->addDoor("go back", rooms[1]);
+    rooms[0]->addDoor("stay here", 0);
+    rooms[0]->addDoor("path into the forest", 1);
+    rooms[1]->addDoor("go back", 0);
+    rooms[1]->addDoor("turn left", 2);
+    rooms[1]->addDoor("turn right", 3);
+    rooms[2]->addDoor("go back", 1);
+    rooms[3]->addDoor("go back", 1);
 
     
-    Room *currentRoom = rooms[0];
+    int currentRoom = 0;
     
     while (true){
-        currentRoom->display();
+        rooms[currentRoom]->display();
         
-        currentRoom = currentRoom->makeChoice();
+        currentRoom = rooms[currentRoom]->makeChoice();
         
         
         // if you return nullptr
@@ -54,9 +54,6 @@ int main(int argc, const char * argv[]) {
         //}
     }
     
-    for(int i = 0; i < rooms.size(); i++){
-        delete rooms[i];
-    }
     rooms.clear();
     
     return 0;

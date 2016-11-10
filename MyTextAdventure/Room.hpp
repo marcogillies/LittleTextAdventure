@@ -19,13 +19,14 @@ class Room
 {
     std::string text;
     std::vector <Door> doors;
+    int id;
 public:
-    Room(std::string _text);
+    Room(std::string _text, int _id);
     
-    void addDoor(std::string text, Room * nextRoom);
+    void addDoor(std::string text, int nextRoom);
     void display();
     
-    Room * makeChoice();
+    int makeChoice();
 };
 
 #endif /* Room_hpp */
