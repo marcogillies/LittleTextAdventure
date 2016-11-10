@@ -14,6 +14,9 @@ using std::string;
 using std::vector;
 
 #include "Room.hpp"
+#include "Player.hpp"
+
+
 
 vector <Room> rooms;
 
@@ -42,10 +45,19 @@ int main(int argc, const char * argv[]) {
     rooms[2].addDoor("go back", "dark forest");
     rooms[3].addDoor("go back", "dark forest");
 
-    
+    Player p;
+    while (p.getName() == ""){
+        try{
+            p = Player::setUpProfile();
+        } catch (PlayerLoadException &e){
+            std::cout << "Please correct the following errors:" << std::endl;
+            std::cout << e.getMessage() << std::endl;
+        }
+    }
     auto currentRoom = rooms.begin();
     
     while (true){
+        p.display();
         currentRoom->display();
         
         std::string nextRoomName = currentRoom->makeChoice();

@@ -14,6 +14,12 @@
 #include <vector>
 #include "Door.hpp"
 
+class InputValueException{
+    std::string message;
+public:
+    InputValueException(std::string _message):message(_message){};
+    std::string getMessage(){return message;}
+};
 
 class Room
 {
