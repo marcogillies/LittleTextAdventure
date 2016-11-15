@@ -15,7 +15,6 @@ using std::vector;
 #include "Room.hpp"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
     
     vector <Room *> rooms;
     rooms.push_back(new Room("you are standing on the edge of a deep dark forest"));
